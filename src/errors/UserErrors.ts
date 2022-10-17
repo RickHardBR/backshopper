@@ -13,6 +13,6 @@ export class ErrorInvalidEmail extends CustomError {
 
 export class ErrorExistEmail extends CustomError {
   constructor(public email: string){
-    super(409,`Verifique o campo E-mail, este e-mail: ${email} já está cadastrado.`);
+    super(409,`Este e-mail já está cadastrado. continue com sua compra`);
   }
 }
