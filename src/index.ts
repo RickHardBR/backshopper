@@ -1,4 +1,12 @@
+import {
+  Request,
+  Response,
+  NextFunction
+} from "express";
+
 import { app } from "./server";
+
+import "express-async-errors";
 
 import { userRouter } from './routes/userRoutes';
 
@@ -7,14 +15,6 @@ import { CustomError } from './errors/CustomError';
 import { produtcsRouter } from './routes/productRoutes';
 
 import { purchaseRouter } from './routes/purchaseRoutes';
-
-import {
-  Request,
-  Response,
-  NextFunction
-} from "express";
-
-import "express-async-errors";
 
 app.use('/user', userRouter);
 app.use('/purchase', purchaseRouter);
