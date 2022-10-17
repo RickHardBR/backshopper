@@ -10,7 +10,7 @@
     "postinstall": "tsc"
   },
   "keywords": [],
-  "author": "Ricardo Ribeiro<ricardo.ribeiro@gmail.com>",
+  "author": "Ricardo Ribeiro<rickhhard@gmail.com>",
   "license": "ISC",
     "dependencies": {
     "cors": "^2.8.5",
