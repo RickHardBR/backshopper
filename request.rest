@@ -1,0 +1,37 @@
+### 02 -
+POST http://localhost:3333/user/singUp
+Content-Type: application/json
+
+{
+  "first_name":"Andersson",
+  "last_name": "Silva",
+  "email": "theDAAA@gmail.com.br"
+}
+
+### 03 -
+POST http://localhost:3333/purchase/ahaha@gmail.com?date=2022-10-17
+Content-Type: application/json
+
+{
+  "qty_product_selected": 5,
+  "id_product": 6
+}
+
+### 0- 
+GET http://localhost:3333/user/cart/Brasil@bol.com.br?date=20/10/2022
+
+
+### 0- get de todos os produtos
+GET http://localhost:3333/products/all/1?id=1&selectQty=5
+
+### 0- get de produto não existente
+GET http://localhost:3333/products/all/1?nameProduct=macarrao
+
+### 0- get de produto existente
+GET http://localhost:3333/products/all/1?nameProduct=guardanapo
+
+### 0- get de produto existente 
+GET http://localhost:3333/products/all/1?nameProduct=GuArDaNaPo
+
+### 0- get de produto existente 
+GET http://localhost:3333/products/all/1?nameProduct=gua
