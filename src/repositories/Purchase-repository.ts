@@ -44,6 +44,7 @@ export class PurchaseRepository extends BaseDatabase implements IPurchaseModel {
         total_price: (product.price * data.qty_product_selected),
         buy_date: new Date(),
         delivey_date: new Date(data.delivey_date + "T00:00"),
+        photo_product: product.photo_product,
         id_purchase_ref: user.id_user,
       })
 
