@@ -15,32 +15,29 @@ export class PurchasesCase{
 
   async purchase(email: string, request:RequestType){
     let {
-      id_product,
-      qty_product_selected,
       delivey_date,
+      listPurchases
     } = request
     
-    if(!delivey_date || !qty_product_selected){
-      throw new ErrorObjInvalid()
-    }
-
     const user = await this.purchaseModel.findUser(email)
 
     if(!user){
       throw new ErrorEmailNotFound(email)
     }
 
-    const product = await this.purchaseModel.findProduct(id_product);
-
-    if(qty_product_selected > product.qty_stock){
-      throw new ErrorQtyStock(product.product_name)
+    if(!delivey_date){
+      throw new ErrorObjInvalid()
     }
-    
-    if(qty_product_selected <= 0){
-      request.qty_product_selected = 1
+
+    const soldOutProducts = await this.purchaseModel.soldOutProducts(listPurchases)
+
+    //* Si a lista de produtos 
+    if ( soldOutProducts.length > 0 ) {
+      throw new ErrorQtyStock(`${soldOutProducts.map((item) =>
+        soldOutProducts.length > 1 ? `${item.product_name}`  : item.product_name
+      )}`)
     }
   
     await this.purchaseModel.purchase(email, request)
-
   }
 }

@@ -19,6 +19,5 @@ export class GetAllProductsController {
     const products = await getProductsCase.getAllProducts(Number(page), nameProduct)
 
     return res.status(200).json(products)
-    // await BaseDatabase.destroyConnection()
   }
 }

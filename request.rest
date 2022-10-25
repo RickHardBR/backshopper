@@ -9,13 +9,27 @@ Content-Type: application/json
 }
 
 ### 03 -
-POST http://localhost:3333/purchase/ahaha@gmail.com?date=2022-10-17
+POST http://localhost:3333/purchase/rickhard@bol.com.br?date=2022-10-30
 Content-Type: application/json
 
+[
 {
   "qty_product_selected": 5,
   "id_product": 6
+},
+{
+  "qty_product_selected": 2,
+  "id_product": 1
+},
+{
+  "qty_product_selected": 2000,
+  "id_product": 8
+},
+{
+  "qty_product_selected": 2000,
+  "id_product": 5
 }
+]
 
 ### 0- 
 GET http://localhost:3333/user/cart/Brasil@bol.com.br?date=20/10/2022
