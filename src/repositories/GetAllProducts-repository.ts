@@ -2,8 +2,6 @@ import { BaseDatabase } from '../data/Database';
 
 import { IProductsModel } from '../models/ProductsModel';
 
-import { IProductTypeModel } from '../models/ProductTypeModel';
-
 export class GetAllProductsRepository
   extends BaseDatabase
   implements IProductsModel

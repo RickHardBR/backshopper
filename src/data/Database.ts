@@ -5,8 +5,6 @@ import knex from 'knex';
 dotenv.config();
 
 export class BaseDatabase {
-
-  // protected static connection: Knex | null = null;
   
   protected static getConnection = knex({
         client: "mysql",
@@ -19,12 +17,4 @@ export class BaseDatabase {
           multipleStatements: true         
         },
       });
-
-
-  // public static async destroyConnection(): Promise<void> {
-  //   if (BaseDatabase.connection) {
-  //     await BaseDatabase.connection.destroy();
-  //     BaseDatabase.connection = null;
-  //   }
-  // }
 }

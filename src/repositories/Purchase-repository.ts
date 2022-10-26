@@ -58,8 +58,8 @@ export class PurchaseRepository extends BaseDatabase implements IPurchaseModel {
     }
 
     productsAndPurchase.forEach( async (item) => {
-      //* Inserir compra do produto no banco de dados
-      //* dinâmicamente.
+      
+      //* Inserir compra do produto no banco de dados dinâmicamente.
       await BaseDatabase.getConnection(this.TABLES.purchase)
         .insert({
           id_purchase: generateId(),

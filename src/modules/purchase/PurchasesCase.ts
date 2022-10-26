@@ -31,7 +31,6 @@ export class PurchasesCase{
 
     const soldOutProducts = await this.purchaseModel.soldOutProducts(listPurchases)
 
-    //* Si a lista de produtos 
     if ( soldOutProducts.length > 0 ) {
       throw new ErrorQtyStock(`${soldOutProducts.map((item) =>
         soldOutProducts.length > 1 ? `${item.product_name}`  : item.product_name
