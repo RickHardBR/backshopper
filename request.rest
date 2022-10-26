@@ -31,10 +31,6 @@ Content-Type: application/json
 }
 ]
 
-### 0- 
-GET http://localhost:3333/user/cart/Brasil@bol.com.br?date=20/10/2022
-
-
 ### 0- get de todos os produtos
 GET http://localhost:3333/products/all/1?id=1&selectQty=5
 
