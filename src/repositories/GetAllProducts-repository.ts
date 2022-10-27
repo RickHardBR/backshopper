@@ -16,6 +16,8 @@ export class GetAllProductsRepository
     const allProducts = await BaseDatabase.getConnection(this.TABLE_NAME)
       .limit(10)
       .offset((page - 1) * 10)
+      .orderBy('product_name', 'asc')
+
 
     if (nameProduct) {
       const filteredProducts = await BaseDatabase.getConnection(this.TABLE_NAME)

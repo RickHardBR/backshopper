@@ -14,20 +14,12 @@ Content-Type: application/json
 
 [
 {
-  "qty_product_selected": 5,
-  "id_product": 6
-},
-{
-  "qty_product_selected": 2,
+  "qty_product_selected": 1,
   "id_product": 1
 },
 {
-  "qty_product_selected": 2000,
-  "id_product": 8
-},
-{
-  "qty_product_selected": 2000,
-  "id_product": 5
+  "qty_product_selected": 1,
+  "id_product": 2
 }
 ]
 
