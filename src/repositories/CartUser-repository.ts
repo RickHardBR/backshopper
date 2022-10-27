@@ -48,8 +48,7 @@ implements ICartUserModel {
         deliveyDate: cartFilter[0].delivey_date,
         listPurchases: cartFilter
       }
-            
-            
+
       return cart
   }
 }
