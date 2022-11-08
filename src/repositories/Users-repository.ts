@@ -2,10 +2,8 @@ import { BaseDatabase } from '../data/Database';
 
 import { generateId } from '../utils/generateId'; 
 
-import { 
-  IUsersModelData,
-  IUsersModel
-} from '../models/UsersModel';
+import { IUsersModel } from '../models/UsersModel';
+import {  UsersModelDataType } from '../models/types';
 
 export class UserRepository extends BaseDatabase
 implements IUsersModel{
@@ -20,7 +18,7 @@ implements IUsersModel{
   }
 
 
-  async create(data: IUsersModelData){
+  async create(data: UsersModelDataType){
     await BaseDatabase.getConnection(this.TABLE_NAME)
     .insert({id_user: generateId(), ...data})
   }

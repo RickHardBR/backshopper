@@ -12,7 +12,8 @@ import { DataListType } from "./types"
 export class PurchaseController {
   async purchase(req: Request, res: Response) {
     const {email} = req.params
-    const delivey_date = req.query.date as string
+    let delivey_date = req.query.date as string
+    delivey_date = delivey_date.replace(/\//g, "-");
 
     const listPurchases = req.body.map((purchase: DataListType) => {
       const {

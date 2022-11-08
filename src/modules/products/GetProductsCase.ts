@@ -5,12 +5,8 @@ export class GetProductsCase {
     private productsModel: IProductsModel
   ){}
 
-  async getAllProducts(page: number, nameProduct: string){
-    
-    const products = await this.productsModel.getAllProducts(page, nameProduct);
-    
-    if(products.length <= 0){return 'Produto não encontrado!'}
-
+  async getAllProducts(pageNumber: number){
+    const products = await this.productsModel.getAllProducts(pageNumber);
     return products
   }
 }

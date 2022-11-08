@@ -3,7 +3,7 @@ export type DataListType = {
   qty_product_selected: number,
 }
 
-export interface RequestType {
+export type RequestType = {
   delivey_date: string;
   listPurchases: DataListType[];
 }

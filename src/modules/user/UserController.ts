@@ -21,6 +21,5 @@ export class UserController {
     })
 
     return res.status(201).json({message: `Usuário: ${first_name} ${last_name} Registrado com sucesso`})
-    // await BaseDatabase.destroyConnection()
   }
 }

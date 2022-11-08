@@ -33,6 +33,5 @@ export class UserCase{
     }
     
     await this.userModel.create(request)
-
   }
 }

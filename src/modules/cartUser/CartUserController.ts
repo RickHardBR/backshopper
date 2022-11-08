@@ -19,6 +19,5 @@ export class CartUserController {
     const cartUser = await cartUserCase.get(userEmail, dateFilter)
 
     return res.status(200).json(cartUser)
-    // await BaseDatabase.destroyConnection()
   }
 }
