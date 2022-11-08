@@ -18,14 +18,6 @@ export class GetAllProductsRepository
       .offset((page - 1) * 10)
       .orderBy('product_name', 'asc')
 
-
-    if (nameProduct) {
-      const filteredProducts = await BaseDatabase.getConnection(this.TABLE_NAME)
-        .where('product_name', 'like', `%${nameProduct}%`)
-
-      return filteredProducts
-    }
-
     return allProducts
   }
 }

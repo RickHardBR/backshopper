@@ -13,20 +13,16 @@ CREATE TABLE IF NOT EXISTS Shopper_Product(
 );
 CREATE TABLE IF NOT EXISTS Shopper_Purchase (
 `id_purchase` VARCHAR(255) PRIMARY KEY,
-`product_name` VARCHAR(255) NOT NULL,
-`price` DECIMAL(9,2) NOT NULL,
+`id_user_ref` VARCHAR(255) NOT NULL,
+`id_product` VARCHAR(255) NOT NULL,
 `qty_product_selected` INT NOT NULL,
+`price` DECIMAL(9,2) NOT NULL,
 `total_price` DECIMAL(9,2) NOT NULL,
 `buy_date` DATE NOT NULL,
 `delivey_date` DATE NOT NULL,
-`id_purchase_ref` VARCHAR(255) NOT NULL,
-FOREIGN KEY (`id_purchase_ref`) REFERENCES `Shopper_User` (`id_user`)
+FOREIGN KEY (`id_user_ref`) REFERENCES `Shopper_User` (`id_user`)
 );
-CREATE TABLE IF NOT EXISTS Shopper_Complete_Purchase (
-`id_cart` VARCHAR(255) PRIMARY KEY,
-`id_user` VARCHAR(255) NOT NULL,
-`id_purchase` VARCHAR(255) NOT NULL
-);
+
 INSERT INTO Shopper_Product (product_name, price, qty_stock, photo_product) VALUES
   ('AZEITE PORTUGUÊS EXTRA VIRGEM GALLO 500ML',20.49,158,'https://images.prismic.io/shopperproducts/66483d58-8594-4982-981e-c36eccc90492_01.jpg'),
 	('BEBIDA ENERGÉTICA VIBE 2L',8.99,659,'https://images.prismic.io/shopperproducts/c86eb734-fe88-4e29-9b6c-64db7bd54b9d_02.jpg'),

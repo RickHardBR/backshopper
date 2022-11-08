@@ -1,10 +1,6 @@
-export interface IUsersModelData {
-  first_name:string;
-  last_name:string;
-  email:string;
-}
+import { UsersModelDataType } from './types';
 
 export interface IUsersModel{
-  create:(request:IUsersModelData)=> Promise<Boolean | void>;
+  create:(request:UsersModelDataType)=> Promise<Boolean | void>;
   findEmail: (email: string) => Promise<boolean>
 }

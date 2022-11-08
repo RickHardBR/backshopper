@@ -3,12 +3,15 @@ import { BaseDatabase } from '../data/Database'
 import { generateId } from '../utils/generateId'
 
 import {
-  IPurchaseModelData,
   IPurchaseModel,
-  ListPurchasesType,
-  ProductsAndPurchaseType
 } from '../models/PurchaseModel'
-import { IProductTypeModel } from '../models/ProductTypeModel'
+
+import { 
+  ProductTypeModel, 
+  PurchasedProductType,
+  PurchaseModelDataType,
+  ListPurchasesType,
+} from '../models/types'
 
 export class PurchaseRepository extends BaseDatabase implements IPurchaseModel {
   private TABLES = {
@@ -20,14 +23,14 @@ export class PurchaseRepository extends BaseDatabase implements IPurchaseModel {
   async findUser(email: string) {
     const [user] = await BaseDatabase.getConnection()
       .from(this.TABLES.user)
-      .where('email', email)
+      .where('email', email)      
 
     return user
   }
 
   async soldOutProducts(purchaseProducts: ListPurchasesType[]) {
-    const products: IProductTypeModel[] = []
-    let soldOutProducts: IProductTypeModel[] = []
+    const products: ProductTypeModel[] = []
+    let soldOutProducts: ProductTypeModel[] = []
 
     for (let i = 0; i < purchaseProducts.length; i++) {
       const [product] = await BaseDatabase.getConnection(
@@ -43,35 +46,35 @@ export class PurchaseRepository extends BaseDatabase implements IPurchaseModel {
     return soldOutProducts
   }
 
-   async purchase(email: string, data: IPurchaseModelData) {
+   async purchase(email: string, data: PurchaseModelDataType) {  
     const user = await this.findUser(email)
-    let products: IProductTypeModel[] | any = []
-    let productsAndPurchase: ProductsAndPurchaseType[] = []
+    let products: ProductTypeModel[] | any = []
+    let purchasedProducts: PurchasedProductType[] = []
 
     for (let i = 0; i < data.listPurchases.length; i++) {
-      const [product] = await BaseDatabase.getConnection(
-        this.TABLES.product
-      ).where('id_product', data.listPurchases[i].id_product)
-      products.push(products)
+      const [product] = await BaseDatabase
+      .getConnection(this.TABLES.product)
+      .where('id_product', data.listPurchases[i].id_product)
+      products.push(product)
+      
       const mergeObj = { ...product, ...data.listPurchases[i] }
-      productsAndPurchase.push(mergeObj)
+      purchasedProducts.push(mergeObj)
     }
     
-    productsAndPurchase.forEach(async item => {
-      
+    purchasedProducts.forEach(async item => {
       await BaseDatabase.getConnection(this.TABLES.purchase).insert({
         id_purchase: generateId(),
-        product_name: item.product_name,
-        price: item.price,
+        id_user_ref: user.id_user,
+        id_product: item.id_product,
         qty_product_selected: item.qty_product_selected,
+        price: item.price,
         total_price: item.price * item.qty_product_selected,
         buy_date: new Date(),
-        delivey_date: new Date(data.delivey_date + 'T00:00'),
-        id_purchase_ref: user.id_user
+        delivey_date: new Date(data.delivey_date),
       })
     })
 
-    productsAndPurchase.forEach(async item => {
+    purchasedProducts.forEach(async item => {
       await BaseDatabase.getConnection(this.TABLES.product)
         .update('qty_stock', item.qty_stock - item.qty_product_selected)
         .where('id_product', item.id_product)

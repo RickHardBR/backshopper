@@ -12,13 +12,13 @@ import { userRouter } from './routes/userRoutes';
 
 import { CustomError } from './errors/CustomError';
 
-import { produtcsRouter } from './routes/productRoutes';
+import { productsRouter } from './routes/productRoutes';
 
 import { purchaseRouter } from './routes/purchaseRoutes';
 
 app.use('/user', userRouter);
 app.use('/purchase', purchaseRouter);
-app.use('/products', produtcsRouter);
+app.use('/products', productsRouter);
 
 
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
