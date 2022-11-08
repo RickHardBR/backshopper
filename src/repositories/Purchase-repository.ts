@@ -2,15 +2,13 @@ import { BaseDatabase } from '../data/Database'
 
 import { generateId } from '../utils/generateId'
 
-import {
-  IPurchaseModel,
-} from '../models/PurchaseModel'
+import { IPurchaseModel } from '../models/PurchaseModel'
 
-import { 
-  ProductTypeModel, 
+import {
+  ProductTypeModel,
   PurchasedProductType,
   PurchaseModelDataType,
-  ListPurchasesType,
+  ListPurchasesType
 } from '../models/types'
 
 export class PurchaseRepository extends BaseDatabase implements IPurchaseModel {
@@ -23,7 +21,7 @@ export class PurchaseRepository extends BaseDatabase implements IPurchaseModel {
   async findUser(email: string) {
     const [user] = await BaseDatabase.getConnection()
       .from(this.TABLES.user)
-      .where('email', email)      
+      .where('email', email)
 
     return user
   }
@@ -46,21 +44,21 @@ export class PurchaseRepository extends BaseDatabase implements IPurchaseModel {
     return soldOutProducts
   }
 
-   async purchase(email: string, data: PurchaseModelDataType) {  
+  async purchase(email: string, data: PurchaseModelDataType) {
     const user = await this.findUser(email)
     let products: ProductTypeModel[] | any = []
     let purchasedProducts: PurchasedProductType[] = []
 
     for (let i = 0; i < data.listPurchases.length; i++) {
-      const [product] = await BaseDatabase
-      .getConnection(this.TABLES.product)
-      .where('id_product', data.listPurchases[i].id_product)
+      const [product] = await BaseDatabase.getConnection(
+        this.TABLES.product
+      ).where('id_product', data.listPurchases[i].id_product)
       products.push(product)
-      
+
       const mergeObj = { ...product, ...data.listPurchases[i] }
       purchasedProducts.push(mergeObj)
     }
-    
+
     purchasedProducts.forEach(async item => {
       await BaseDatabase.getConnection(this.TABLES.purchase).insert({
         id_purchase: generateId(),
@@ -70,7 +68,7 @@ export class PurchaseRepository extends BaseDatabase implements IPurchaseModel {
         price: item.price,
         total_price: item.price * item.qty_product_selected,
         buy_date: new Date(),
-        delivey_date: new Date(data.delivey_date),
+        delivey_date: new Date(data.delivey_date)
       })
     })
 

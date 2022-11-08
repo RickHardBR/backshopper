@@ -1,15 +1,12 @@
-import {
-  Request,
-  Response
-} from 'express';
+import { Request, Response } from 'express'
 
-import { GetProductsCase } from '././GetProductsCase';
+import { GetProductsCase } from '././GetProductsCase'
 
-import { GetAllProductsRepository } from '../../repositories/GetAllProducts-repository';
+import { GetAllProductsRepository } from '../../repositories/GetAllProducts-repository'
 
 export class GetAllProductsController {
   async get(req: Request, res: Response) {
-    const { pageNumber } =req.params;
+    const { pageNumber } = req.params
 
     const getAllProductsRepository = new GetAllProductsRepository()
     const getProductsCase = new GetProductsCase(getAllProductsRepository)

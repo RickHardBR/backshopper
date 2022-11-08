@@ -1,9 +1,9 @@
 export type DataListType = {
-  id_product: number,
-  qty_product_selected: number,
+  id_product: number
+  qty_product_selected: number
 }
 
 export type RequestType = {
-  delivey_date: string;
-  listPurchases: DataListType[];
+  delivey_date: string
+  listPurchases: DataListType[]
 }

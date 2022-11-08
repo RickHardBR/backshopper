@@ -1,6 +1,6 @@
-import { BaseDatabase } from '../data/Database';
+import { BaseDatabase } from '../data/Database'
 
-import { IProductsModel } from '../models/ProductsModel';
+import { IProductsModel } from '../models/ProductsModel'
 
 export class GetAllProductsRepository
   extends BaseDatabase
@@ -8,11 +8,7 @@ export class GetAllProductsRepository
 {
   private TABLE_NAME = 'Shopper_Product'
 
-  async getAllProducts(
-    page: number,
-    nameProduct?: string,
-  ) {
-
+  async getAllProducts(page: number) {
     const allProducts = await BaseDatabase.getConnection(this.TABLE_NAME)
       .limit(10)
       .offset((page - 1) * 10)

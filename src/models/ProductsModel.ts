@@ -1,5 +1,5 @@
-import { ProductTypeModel } from './types';
+import { ProductTypeModel } from './types'
 
 export interface IProductsModel {
-  getAllProducts:(numberCurrentPage: number)=> Promise<ProductTypeModel[]>; 
+  getAllProducts: (numberCurrentPage: number) => Promise<ProductTypeModel[]>
 }

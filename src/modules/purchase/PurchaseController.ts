@@ -1,29 +1,22 @@
-import {
-  Request,
-  Response
-} from 'express';
+import { Request, Response } from 'express'
 
-import { PurchasesCase } from './PurchasesCase';
+import { PurchasesCase } from './PurchasesCase'
 
-import { PurchaseRepository } from '../../repositories/Purchase-repository';
+import { PurchaseRepository } from '../../repositories/Purchase-repository'
 
-import { DataListType } from "./types"
+import { DataListType } from './types'
 
 export class PurchaseController {
   async purchase(req: Request, res: Response) {
-    const {email} = req.params
+    const { email } = req.params
     let delivey_date = req.query.date as string
-    delivey_date = delivey_date.replace(/\//g, "-");
+    delivey_date = delivey_date.replace(/\//g, '-')
 
     const listPurchases = req.body.map((purchase: DataListType) => {
-      const {
-        id_product,
-        qty_product_selected
-      } = purchase 
+      const { id_product, qty_product_selected } = purchase
 
-      return {id_product, qty_product_selected}
-    });
-
+      return { id_product, qty_product_selected }
+    })
 
     const purchaseRepository = new PurchaseRepository()
     const purchaseCase = new PurchasesCase(purchaseRepository)
@@ -33,6 +26,6 @@ export class PurchaseController {
       listPurchases
     })
 
-    return res.status(200).json({message:'Compra efetuada com sucesso!'})
+    return res.status(200).json({ message: 'Compra efetuada com sucesso!' })
   }
 }
